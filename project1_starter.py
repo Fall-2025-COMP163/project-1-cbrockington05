@@ -59,16 +59,8 @@ def calculate_stats(character_class, level):
 
 def save_character(character, filename):
 
-   #checking to see if directory exist
-   directory = os.path.dirname(filename)
-   if directory and not os.path.exists(directory):
-      return False #directory doesnt exist
-
-   #checking if we can write to file
-   if os.path.exists(filename) and not os.access(filename, os.W_OK):
-      return False
      
-   #open file in write mode
+      #open file in write mode
     with open(filename, 'w') as f:
         f.write(f'Character Name: {character["name"]}\n')
         f.write(f'Class: {character["class"]}\n')
@@ -78,7 +70,7 @@ def save_character(character, filename):
         f.write(f'Health: {character["health"]}\n')
         f.write(f'Gold: {character["gold"]}\n')
 
-    return True
+    
 
 def load_character(filename):
 
