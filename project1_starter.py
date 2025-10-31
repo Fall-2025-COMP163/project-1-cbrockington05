@@ -35,12 +35,6 @@ def create_character(name, character_class):
     return character
     
     
-    
-   
-    # Remember to use calculate_stats() function for stat calculation
-    
-    
-
 
 def calculate_stats(character_class, level):
     
@@ -62,11 +56,6 @@ def calculate_stats(character_class, level):
         print(f"Invalid class '{character_class}', defualting to Rogue.")
         return 10, 10, 70
     
-    
-   
-    # TODO: Implement this function
-    # Return a tuple: (strength, magic, health)
-    
 
 def save_character(character, filename):
     
@@ -80,10 +69,6 @@ def save_character(character, filename):
         f.write(f'Health: {character["health"]}\n')
         f.write(f'Gold: {character["gold"]}\n')
 
-    
-    
-    # TODO: Implement this function
-    # Remember to handle file errors gracefully
     
 
 def load_character(filename):
@@ -137,11 +122,6 @@ def load_character(filename):
                     character['gold'] = value
 
     return character
-                
-
-   
-    # TODO: Implement this function
-    # Remember to handle file not found errors
     
 
 def display_character(character):
@@ -155,10 +135,6 @@ def display_character(character):
     print(f"Magic: {character['magic']}")
     print(f"Health: {character['health']}")
     print(f"Gold: {character['gold']}")
-
-
-    
-    # TODO: Implement this function
     
 
 def level_up(character):
