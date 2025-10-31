@@ -7,6 +7,7 @@ AI Usage: ChatGPT helped me with function formatting, understanding the load_cha
 Example: AI helped with file I/O error handling logic in save_character function
 """
 import os
+
 #character classes to choose from
 given_classes = {'Warrior', 'Mage', 'Rogue', 'Cleric'}
 
@@ -53,15 +54,24 @@ def calculate_stats(character_class, level):
         return 10 + (level -1) *2, 15 + (level -1) *3, 110 + (level -1) *8
     
     else:
-        print(f"Invalid class '{character_class}', defualting to Rogue.")
+        print(f"Invalid class '{character_class}', defaulting to Rogue.")
         return 10, 10, 70
     
 
 def save_character(character, filename):
+   
+   #making sure directory exist
+   directory = os.path.dirname(filename)
+   
+   if directory and not os.path.exists(directory):
+      return False
 
-     
-      #open file in write mode
-    with open(filename, 'w') as f:
+   #return false if file is not writable
+   if os.path.exists(filename) and not os.access(filename, os.W_OK):
+      return False
+   
+   #open file in write mode
+   with open(filename, 'w') as f:
         f.write(f'Character Name: {character["name"]}\n')
         f.write(f'Class: {character["class"]}\n')
         f.write(f'Level: {character["level"]}\n')
@@ -70,6 +80,7 @@ def save_character(character, filename):
         f.write(f'Health: {character["health"]}\n')
         f.write(f'Gold: {character["gold"]}\n')
 
+   return True
     
 
 def load_character(filename):
