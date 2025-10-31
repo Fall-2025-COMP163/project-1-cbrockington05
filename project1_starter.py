@@ -3,10 +3,10 @@ COMP 163 - Project 1: Character Creator & Saving/Loading
 Name: [Cayden Brockington]
 Date: [11/01/25]
 
-AI Usage: ChatGPT helped me with function formatting and understanding the load_character logic
+AI Usage: ChatGPT helped me with function formatting, understanding the load_character logic, and guiding me through using os
 Example: AI helped with file I/O error handling logic in save_character function
 """
-
+import os
 #character classes to choose from
 given_classes = {'Warrior', 'Mage', 'Rogue', 'Cleric'}
 
@@ -58,8 +58,17 @@ def calculate_stats(character_class, level):
     
 
 def save_character(character, filename):
-    
-    #open file in write mode
+
+   #checking to see if directory exist
+   directory = os.path.dirname(filename)
+   if directory and not os.path.exists(directory):
+      return False #directory doesnt exist
+
+   #checking if we can write to file
+   if os.path.exists(filename) and not os.access(filename, os.W_OK):
+      return False
+     
+   #open file in write mode
     with open(filename, 'w') as f:
         f.write(f'Character Name: {character["name"]}\n')
         f.write(f'Class: {character["class"]}\n')
@@ -69,11 +78,9 @@ def save_character(character, filename):
         f.write(f'Health: {character["health"]}\n')
         f.write(f'Gold: {character["gold"]}\n')
 
-    
+    return True
 
 def load_character(filename):
-    
-    import os
 
     #seeing if file exist
     if not os.path.exists(filename):
